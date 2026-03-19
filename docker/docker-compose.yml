@@ -6,6 +6,7 @@ services:
   picoclaw-agent:
     image: docker.io/sipeed/picoclaw:latest
     container_name: picoclaw-agent
+    privileged: true
     profiles:
       - agent
     # Uncomment to access host network; leave commented unless needed.
@@ -25,6 +26,7 @@ services:
     image: docker.io/sipeed/picoclaw:latest
     container_name: picoclaw-gateway
     restart: on-failure
+    privileged: true
     profiles:
       - gateway
     # Uncomment to access host network; leave commented unless needed.
@@ -41,12 +43,13 @@ services:
     image: docker.io/sipeed/picoclaw:launcher
     container_name: picoclaw-launcher
     restart: on-failure
+    privileged: true
     profiles:
       - launcher
     environment:
       - PICOCLAW_GATEWAY_HOST=0.0.0.0
     ports:
-      - "127.0.0.1:18800:18800"
-      - "127.0.0.1:18790:18790"
+      - "18800:18800"
+      - "18790:18790"
     volumes:
       - ./data:/root/.picoclaw
