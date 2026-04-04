@@ -27,6 +27,7 @@ services:
     container_name: picoclaw-gateway
     restart: on-failure
     privileged: true
+    restart: unless-stopped
     profiles:
       - gateway
     # Uncomment to access host network; leave commented unless needed.
@@ -44,6 +45,7 @@ services:
     container_name: picoclaw-launcher
     restart: on-failure
     privileged: true
+    restart: unless-stopped
     profiles:
       - launcher
     environment:
